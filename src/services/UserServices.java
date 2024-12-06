@@ -2,6 +2,7 @@ package services;
 
 import java.util.HashMap;
 import java.util.Objects;
+import models.Product;
 import models.User;
 import utils.Utils;
 
@@ -29,6 +30,12 @@ public class UserServices {
     return this.loggedIn;
   } // getLoggedIn
 
+  public void printAllUsers() {
+    for (User user : users.values()) {
+      System.out.println("id: " + user.getUserId() + " name: " + user.getUserFullName());
+    }
+  } // printAllUsers
+
   public void login(String email, String password) {
     for (User user : this.users.values()) {
       if (Objects.equals(user.getEmail(), email) && Objects.equals(user.getPassword(), password)) {
@@ -55,6 +62,8 @@ public class UserServices {
     this.currId++;
 
     System.out.println("account registered");
+
+    //    printAllUsers();
   } // register
 
   public boolean checkIfEmailTaken(String email) {
@@ -81,6 +90,19 @@ public class UserServices {
     System.out.println("account " + this.loggedInId + " has been deleted");
 
     this.users.remove(this.loggedInId);
-    logout(false); // don't print for deleting an account, logging out is presumed
+    logout(false); // don't print for deleting an account, for logging out is presumed
+
+    //    printAllUsers();
   } // deleteAccount
+
+  public void printCartItems() {
+    if (users.get(loggedInId).getCart().isEmpty()) {
+      System.out.println("cart is empty");
+      return;
+    }
+
+    for (Product item : users.get(loggedInId).getCart()) {
+      item.printDetails();
+    }
+  } // printCartItems
 }

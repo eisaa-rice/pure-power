@@ -4,19 +4,19 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Utils {
-  public static int getNum(int lim) {
+  public static int getNum(int start, int end) {
     Scanner scanner = new Scanner(System.in);
 
     int x = -1;
 
-    while (x < 0 || x > lim) {
+    while (x < start || x > end) {
       try {
         x = scanner.nextInt();
 
         if (x < 0) {
           System.out.println("no negative numbers please");
 
-        } else if (x > lim) {
+        } else if (x < start || x > end) {
           System.out.println("input is not found in menu");
         }
 

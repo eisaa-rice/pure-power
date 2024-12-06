@@ -26,19 +26,6 @@ public class Product {
     return price;
   }
 
-  @Override
-  public String toString() {
-    return "Product{"
-        + "id="
-        + this.productId
-        + ", name='"
-        + this.productName
-        + '\''
-        + ", price="
-        + this.price
-        + '}';
-  }
-
   public void setProductId(int productId) {
     this.productId = productId;
   }
@@ -49,5 +36,15 @@ public class Product {
 
   public void setPrice(double price) {
     this.price = price;
+  }
+
+  public void printDetails() {
+    System.out.println(
+        "Product ID: "
+            + this.productId
+            + "\nname: "
+            + this.productName
+            + "\nprice: $"
+            + this.price);
   }
 }

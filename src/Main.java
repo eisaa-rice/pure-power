@@ -6,60 +6,71 @@ public class Main {
     // create service instances
     UserServices userService = new UserServices();
 
-    // login / register
-    System.out.println("WELCOME TO PURE POWER\n1: LOGIN\n2: REGISTER\n\n0: QUIT");
-    int x = Utils.getNum(2);
+    System.out.println("WELCOME TO PURE POWER\n");
 
-    switch (x) {
-      case 1: // login
-        if (userService.getLoggedIn()) {
-          System.out.println("log out first");
-        } else {
-          while (!userService.getLoggedIn()) {
-            String email = Utils.getEmail();
-            String password = Utils.getPassword();
+    while (true) {
+      // login / register
+      System.out.println("\n1: LOGIN\n2: REGISTER\n\n0: QUIT");
+      int choice = Utils.getNum(0, 2);
 
-            userService.login(email, password);
-          } // while
-        }
-        break;
+      switch (choice) {
+        case 1: // login
+          if (userService.getLoggedIn()) {
+            System.out.println("log out first");
+          } else {
+            while (!userService.getLoggedIn()) {
+              String email = Utils.getEmail();
+              String password = Utils.getPassword();
 
-      case 2: // register
-        if (userService.getLoggedIn()) {
-          System.out.println("log out first");
-        } else {
-          while (!userService.getLoggedIn()) {
-            String name = Utils.getString("FULL NAME");
-            String address = Utils.getString("ADDRESS");
+              userService.login(email, password);
+            } // while
+          }
+          break;
 
-            String email = Utils.getEmail();
-            String password = Utils.getPassword();
+        case 2: // register
+          if (userService.getLoggedIn()) {
+            System.out.println("log out first");
+          } else {
+            while (!userService.getLoggedIn()) {
+              String name = Utils.getString("FULL NAME");
+              String address = Utils.getString("ADDRESS");
 
-            userService.register(name, address, email, password);
-          } // while
-        }
-        break;
+              String email = Utils.getEmail();
+              String password = Utils.getPassword();
 
-      case 0: // exit program
-        System.exit(0);
-    } // switch
+              userService.register(name, address, email, password);
+            } // while
+          }
+          break;
 
-    // after signed in
-    System.out.println("SIGNED IN\n1: BROWSE CATALOG\n2: VIEW CART\n\n0: LOGOUT\n");
-    x = Utils.getNum(2);
+        case 0: // exit program
+          System.exit(0);
+      } // switch
 
-    switch (x) {
-      case 1:
-        break;
+      // browse / cart / logout / delete
+      System.out.println(
+          "SIGNED IN\n1: BROWSE CATALOG\n2: VIEW CART\n3: LOGOUT\n4: DELETE ACCOUNT\n");
+      choice = Utils.getNum(1, 4);
 
-      case 2:
-        break;
+      switch (choice) {
+        case 1: // browse items
+          break;
 
-      case 0: // exit program
-        System.exit(0);
-    } // switch
+        case 2: // view cart
+          userService.printCartItems();
 
-    // viewing cart
-    // System.out.println("VIEWING CART\n\n1: BROWSE CATALOG\n2: VIEW CART\n0: LOGOUT\n");
+          break;
+
+        case 3: // log out
+          userService.logout(true);
+
+          break;
+
+        case 4: // delete account
+          userService.deleteAccount();
+
+          break;
+      } // switch
+    } // while
   }
 }
