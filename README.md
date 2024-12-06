@@ -1,4 +1,4 @@
-<p>cart is current list of products (found in services)</p>
+<p>cart is current list of products (found in user)</p>
 <p>one cart at a time</p>
 <p>cart must empty after successful order</p>
 <p>cart must persist within account even after logout (?)</p>

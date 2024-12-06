@@ -10,7 +10,7 @@ public class Main {
 
     while (true) {
       // login / register
-      System.out.println("\n1: LOGIN\n2: REGISTER\n\n0: QUIT");
+      System.out.println("1: LOGIN\n2: REGISTER\n\n0: QUIT");
       int choice = Utils.getNum(0, 2);
 
       switch (choice) {
@@ -47,30 +47,31 @@ public class Main {
           System.exit(0);
       } // switch
 
-      // browse / cart / logout / delete
-      System.out.println(
-          "SIGNED IN\n1: BROWSE CATALOG\n2: VIEW CART\n3: LOGOUT\n4: DELETE ACCOUNT\n");
-      choice = Utils.getNum(1, 4);
+      while (userService.getLoggedIn()) {
+        // browse / cart / logout / delete
+        System.out.println("1: BROWSE CATALOG\n2: VIEW CART\n3: LOGOUT\n4: DELETE ACCOUNT\n");
+        choice = Utils.getNum(1, 4);
 
-      switch (choice) {
-        case 1: // browse items
-          break;
+        switch (choice) {
+          case 1: // browse items
+            break;
 
-        case 2: // view cart
-          userService.printCartItems();
+          case 2: // view cart
+            userService.printCartItems();
 
-          break;
+            break;
 
-        case 3: // log out
-          userService.logout(true);
+          case 3: // log out
+            userService.logout(true);
 
-          break;
+            break;
 
-        case 4: // delete account
-          userService.deleteAccount();
+          case 4: // delete account
+            userService.deleteAccount();
 
-          break;
-      } // switch
+            break;
+        } // switch
+      } // while
     } // while
   }
 }

@@ -13,7 +13,7 @@ public class UserServices {
   private boolean loggedIn;
   private int loggedInId;
 
-  private HashMap<Integer, User> users = new HashMap<Integer, User>();
+  private HashMap<Integer, User> users = new HashMap<>();
 
   // constructor
   public UserServices() {
@@ -23,7 +23,7 @@ public class UserServices {
 
     this.loggedIn = false;
     this.loggedInId = -1;
-  }
+  } // UserServices
 
   // methods
   public boolean getLoggedIn() {
