@@ -3,7 +3,18 @@ package models;
 public class Product {
   // attributes
   private int productId;
-  private String productBrand;
+
+  public enum Brands {
+    RYOBI,
+    DEWALT,
+    MILWAUKEE,
+    CRAFTSMAN,
+    RIDGID,
+    MAKITA
+  } // Brands
+
+  private Brands productBrand;
+
   private String productName;
 
   public enum Departments {
@@ -13,13 +24,14 @@ public class Product {
     LUMBER,
     PLUMBING,
     ELECTRICAL
-  }
+  } // Departments
 
   Departments department;
+
   private double price;
 
   // constructor
-  public Product(int id, String brand, String name, Departments department, double price) {
+  public Product(int id, Brands brand, String name, Departments department, double price) {
     this.productId = id;
     this.productBrand = brand;
     this.productName = name;
@@ -36,7 +48,7 @@ public class Product {
     return productName;
   }
 
-  public String getProductBrand() {
+  public Brands getProductBrand() {
     return productBrand;
   }
 
@@ -56,7 +68,7 @@ public class Product {
     this.productName = productName;
   }
 
-  public void setProductBrand(String productBrand) {
+  public void setProductBrand(Brands productBrand) {
     this.productBrand = productBrand;
   }
 

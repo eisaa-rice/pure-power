@@ -54,6 +54,30 @@ public class Main {
 
         switch (choice) {
           case 1: // browse items
+            boolean viewing = true;
+
+            while (viewing) {
+              System.out.println(
+                  "1: SEE ALL PRODUCTS\n2: VIEW BY BRAND\n3: BROWSE BY DEPARTMENT\n4: STOP VIEWING\n");
+
+              choice = Utils.getNum(1, 3);
+
+              switch (choice) {
+                case 1:
+                  break;
+
+                case 2:
+                  break;
+
+                case 3:
+                  break;
+
+                case 4:
+                  viewing = false;
+                  break;
+              }
+            } // while
+
             break;
 
           case 2: // view cart
