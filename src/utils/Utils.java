@@ -21,7 +21,9 @@ public class Utils {
         }
 
       } catch (Exception e) {
+        x = -1;
         System.out.println("unknown exception: " + e);
+        break;
       } // try - catch
     } // while
 

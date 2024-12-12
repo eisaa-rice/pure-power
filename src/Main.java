@@ -7,8 +7,8 @@ public class Main {
     // create service instances
     UserServices userService = new UserServices();
     ProductServices productService = new ProductServices();
-    PaymentServices paymentService = new PaymentServices();
     CartServices cartService = new CartServices();
+    OrderServices orderServices = new OrderServices();
 
     System.out.println("WELCOME TO PURE POWER\n");
 
@@ -192,8 +192,33 @@ public class Main {
               while (viewing) {
                 switch (choice) {
                   case 1: // checkout
-                    cartService.checkout();
+                    System.out.println("HOW ARE YOU PAYING?");
+                    System.out.println("1: CASH\n2: CARD\n3: TAP-TO-PAY\n0: NEVER MIND");
 
+                    choice = Utils.getNum(0, 3);
+
+                    switch (choice) {
+                      case 1:
+                        orderServices.createOrder(cartService.getCart(), Order.PaymentMethods.CASH);
+                        cartService.emptyCart();
+
+                        break;
+
+                      case 2:
+                        orderServices.createOrder(cartService.getCart(), Order.PaymentMethods.CARD);
+                        cartService.emptyCart();
+
+                        break;
+
+                      case 3:
+                        orderServices.createOrder(
+                            cartService.getCart(), Order.PaymentMethods.TAP_TO_PAY);
+                        cartService.emptyCart();
+
+                        break;
+                    }
+
+                    viewing = false;
                     break;
 
                   case 2: // change quantity
@@ -220,6 +245,8 @@ public class Main {
             break;
 
           case 3: // order history
+            orderServices.printAllOrders();
+
             break;
 
           case 4: // log out

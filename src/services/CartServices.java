@@ -16,6 +16,10 @@ public class CartServices extends ProductServices {
     return this.cart.isEmpty();
   } // isCartEmpty
 
+  public HashMap<Integer, CartItem> getCart() {
+    return cart;
+  }
+
   public void promptToCart() {
     System.out.println("WOULD YOU LIKE TO ADD ANY OF THESE ITEMS TO CART?\n1: YES\n2: NO");
     int x = Utils.getNum(1, 2);
@@ -101,5 +105,7 @@ public class CartServices extends ProductServices {
     System.out.println();
   } // printCartItems
 
-  public void checkout() {} // checkout
+  public void emptyCart() {
+    this.cart.clear();
+  }
 }
