@@ -1,7 +1,5 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class User {
   // attributes
@@ -12,8 +10,6 @@ public class User {
   private String email;
   private String password;
 
-  private List<Product> cart;
-
   // constructor
   public User(int id, String name, String address, String email, String password) {
     this.userId = id;
@@ -21,8 +17,6 @@ public class User {
     this.address = address;
     this.email = email;
     this.password = password;
-
-    this.cart = new ArrayList<>();
   }
 
   // methods
@@ -46,10 +40,6 @@ public class User {
     return password;
   }
 
-  public List<Product> getCart() {
-    return cart;
-  }
-
   public void setUserId(int userId) {
     this.userId = userId;
   }
@@ -68,9 +58,5 @@ public class User {
 
   public void changePassword(String password) {
     this.password = password;
-  }
-
-  public void addItemToCart(Product item) {
-    this.cart.add(item);
   }
 }

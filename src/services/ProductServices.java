@@ -9,7 +9,7 @@ public class ProductServices {
   private HashMap<Integer, Product> products = new HashMap<>();
 
   // constructor
-  ProductServices() {
+  public ProductServices() {
     this.currId = 101;
 
     // only cordless battery-powered tools for products
@@ -89,17 +89,32 @@ public class ProductServices {
   } // ProductServices
 
   // methods
+  public int getCurrId() {
+    return currId;
+  } // getCurrId
+
+  public HashMap<Integer, Product> getProducts() {
+    return products;
+  } // getProducts
+
+  public void createProduct(
+      Product.Brands brand, String name, Product.Departments dept, double price) {
+    this.products.put(this.currId, new Product(this.currId, brand, name, dept, price));
+
+    this.currId++;
+  } // createProduct
+
   public void listAllProducts() {
     for (Product product : this.products.values()) {
       System.out.println(
-          "id: "
-              + product.getProductId()
-              + " brand: "
+          product.getProductId()
+              + ": "
               + product.getProductBrand()
-              + " name: "
+              + " "
               + product.getName()
-              + " dept: "
-              + product.getDepartment());
+              + " - "
+              + product.getDepartment()
+              + "\n");
     } // for
   } // listAllProducts
 
@@ -108,14 +123,14 @@ public class ProductServices {
       if (product.getDepartment() == dept) {
 
         System.out.println(
-            "id: "
-                + product.getProductId()
-                + " brand: "
+            product.getProductId()
+                + ": "
                 + product.getProductBrand()
-                + " name: "
+                + " "
                 + product.getName()
-                + " dept: "
-                + product.getDepartment());
+                + " - "
+                + product.getDepartment()
+                + "\n");
       }
     } // for
   } // listDepartmentProducts
@@ -125,22 +140,15 @@ public class ProductServices {
       if (product.getProductBrand() == brand) {
 
         System.out.println(
-            "id: "
-                + product.getProductId()
-                + " brand: "
+            product.getProductId()
+                + ": "
                 + product.getProductBrand()
-                + " name: "
+                + " "
                 + product.getName()
-                + " dept: "
-                + product.getDepartment());
+                + " - "
+                + product.getDepartment()
+                + "\n");
       }
-    } // for} // listBrandProducts
-  }
-
-  public void createProduct(
-      Product.Brands brand, String name, Product.Departments dept, double price) {
-    this.products.put(this.currId, new Product(this.currId, brand, name, dept, price));
-
-    this.currId++;
-  } // createProduct
+    } // for
+  } // listBrandProducts
 }

@@ -2,8 +2,7 @@ package services;
 
 import java.util.HashMap;
 import java.util.Objects;
-import models.Product;
-import models.User;
+import models.*;
 import utils.Utils;
 
 public class UserServices {
@@ -32,7 +31,7 @@ public class UserServices {
 
   public void printAllUsers() {
     for (User user : users.values()) {
-      System.out.println("id: " + user.getUserId() + " name: " + user.getUserFullName());
+      System.out.println("id: " + user.getUserId() + " name: " + user.getUserFullName() + "\n");
     }
   } // printAllUsers
 
@@ -42,13 +41,20 @@ public class UserServices {
         this.loggedIn = true;
         this.loggedInId = user.getUserId();
 
-        System.out.println("logged in");
+        System.out.println("logged in\n");
         return;
       }
     } // for
 
-    System.out.println("invalid email or password");
+    System.out.println("invalid email or password\n");
   } // login
+
+  public void guest() {
+    this.loggedIn = true;
+    this.loggedInId = 0;
+
+    System.out.println("logged in as guest\n");
+  } // guest
 
   public void register(String name, String address, String email, String password) {
     while (checkIfEmailTaken(email)) {
@@ -61,7 +67,7 @@ public class UserServices {
     this.loggedIn = true;
     this.currId++;
 
-    System.out.println("account registered");
+    System.out.println("account registered\n");
 
     //    printAllUsers();
   } // register
@@ -69,7 +75,7 @@ public class UserServices {
   public boolean checkIfEmailTaken(String email) {
     for (User user : users.values()) {
       if (Objects.equals(email, user.getEmail())) {
-        System.out.println("email: " + email + " already in use");
+        System.out.println("email: " + email + " already in use\n");
         return true;
       }
     } // for
@@ -82,27 +88,16 @@ public class UserServices {
     this.loggedInId = -1;
 
     if (print) {
-      System.out.println("logged out");
+      System.out.println("logged out\n");
     }
   } // logout
 
   public void deleteAccount() {
-    System.out.println("account " + this.loggedInId + " has been deleted");
+    System.out.println("account " + this.loggedInId + " has been deleted\n");
 
     this.users.remove(this.loggedInId);
     logout(false); // don't print for deleting an account, for logging out is presumed
 
     //    printAllUsers();
   } // deleteAccount
-
-  public void printCartItems() {
-    if (users.get(loggedInId).getCart().isEmpty()) {
-      System.out.println("cart is empty");
-      return;
-    }
-
-    for (Product item : users.get(loggedInId).getCart()) {
-      item.printDetails();
-    }
-  } // printCartItems
 }

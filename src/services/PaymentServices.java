@@ -1,3 +1,9 @@
 package services;
 
-public class PaymentServices {}
+public class PaymentServices {
+  // attributes
+
+  // constructor
+
+  // methods
+}
