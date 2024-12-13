@@ -92,8 +92,8 @@ public class Main {
                       break;
 
                     case 2:
-                      cartService.promptToCart();
                       productService.listBrandProducts(Product.Brands.RIDGID);
+                      cartService.promptToCart();
 
                       break;
 
